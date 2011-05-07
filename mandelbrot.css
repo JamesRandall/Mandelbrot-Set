@@ -1,0 +1,22 @@
+body div {
+	margin: auto;
+	width: 1024px;
+}
+
+div#mandelbrot {
+  background-color: white;
+  width: 1024px;
+  height: 768px;
+  padding: 0em 0 3em 0;
+}
+
+div#browserNotSupported {
+  display: none;
+  background-color: #eee;
+  border: 1px solid black;
+  padding: 1em;
+}
+
+span.right {
+	float: right;
+}

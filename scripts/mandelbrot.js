@@ -32,13 +32,15 @@ define(["jquery", "metrics"], function($, metrics) {
 			$('#resetButton').removeAttr('disabled');
 			disabled = false;		
 		};
-
+		
 		worker.postMessage({
 			imageData: imageData,
 			xMin: xMin,
 			xMax: xMax,
 			yMin: yMin,
 			yMax: yMax,
+			width: metrics.width,
+			height: metrics.height,
 			numberOfIterations: iterations
 		});
 	}

@@ -1,10 +1,12 @@
-self.onmessage = function(e) {
+function render(e) {
 	var maxIteration = e.data.numberOfIterations;
 	var imageData = e.data.imageData;
 	var xMin = e.data.xMin;
 	var xMax = e.data.xMax;
 	var yMin = e.data.yMin;
 	var yMax = e.data.yMax;
+	var width = e.data.width;
+	var height = e.data.height;
 	
 	var sx;
 	var sy;
@@ -16,8 +18,8 @@ self.onmessage = function(e) {
 	var xTemp;
 	var color;
 	
-	var xScale = (xMax - xMin) / imageData.width;
-	var yScale = (yMax - yMin) / imageData.height;
+	var xScale = (xMax - xMin) / width;
+	var yScale = (yMax - yMin) / height;
 	
 	var startTime = new Date().getTime();
 	var endTime;
@@ -96,15 +98,15 @@ self.onmessage = function(e) {
 	}
 	
 	function setPixel(x, y, red, green, blue) {
-		var offset = (y * imageData.width * 4) + x * 4;
+		var offset = (y * width * 4) + x * 4;
 		imageData.data[offset] = red;
 		imageData.data[offset+ 1] = green;
 		imageData.data[offset + 2] = blue;
 		imageData.data[offset + 3] = 255;
 	}
 	
-	for (sx = 0; sx < imageData.width; sx++) {
-		for (sy = 0; sy < imageData.height; sy++) {
+	for (sx = 0; sx < width; sx++) {
+		for (sy = 0; sy < height; sy++) {
 			scaledX = sx * xScale + xMin;
 			scaledY = sy * yScale + yMin;
 			
@@ -135,4 +137,8 @@ self.onmessage = function(e) {
 		imageData: imageData,
 		timeTaken: endTime - startTime
 	});
-};
+}
+
+self.addEventListener('message', function(e) {
+	render(e);
+}, false);

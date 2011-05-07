@@ -139,7 +139,7 @@ define(["jquery", "metrics"], function($, metrics) {
 				left = centerX - width/2;
 				right = left + width;
 				top = centerY - height/2;
-				bottom = centerY + height;
+				bottom = top + height;
 				
 				xMax = xMin + right * xScale;
 				xMin = xMin + left * xScale;

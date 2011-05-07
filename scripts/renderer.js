@@ -91,14 +91,24 @@ define(["jquery", "metrics"], function($, metrics) {
 			var xTemp;
 			var color;
 			var fillStyle;
+			var imageData;
 			
 			var xScale = (xMax - xMin) / metrics.width;
 			var yScale = (yMax - yMin) / metrics.height;
 			
 			context = getContext();			
-			/*context.clearRect(0, 0, metrics.width, metrics.height);
-			context.fillStyle = "rgba(38,104,209,1.0)";
-			context.fillRect(0, 0, metrics.width, metrics.height);*/
+			
+			sx= 0;
+			sy = 0;
+			
+			imageData = context.createImageData(metrics.width, metrics.height);
+			function setPixel(x, y, red, green, blue) {
+				var offset = (y * imageData.width * 4) + x * 4;
+				imageData.data[offset] = red;
+				imageData.data[offset+ 1] = green;
+				imageData.data[offset + 2] = blue;
+				imageData.data[offset + 3] = 255;
+			}
 			
 			for (sx = 0; sx < metrics.width; sx++) {
 				for (sy = 0; sy < metrics.height; sy++) {
@@ -117,17 +127,16 @@ define(["jquery", "metrics"], function($, metrics) {
 					}
 					
 					if (iteration === maxIteration) {
-						context.fillStyle = "rgba(0,0,0,1)";
+						setPixel(sx, sy, 0, 0, 0);
 					}
 					else {
 						color = getColor(iteration);
-						fillStyle = 'rgba(' + color.red + ',' + color.green + ',' + color.blue +', 1)';
-						context.fillStyle = fillStyle;
+						setPixel(sx, sy, color.red, color.green, color.blue);
 					}
-					
-					context.fillRect(sx, sy, 1, 1);
 				}
 			}
+			
+			context.putImageData(imageData, 0, 0);
 		}
 	};	
 });

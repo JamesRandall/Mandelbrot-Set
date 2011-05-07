@@ -2,7 +2,7 @@ require(["jquery",
         "metrics",
 		"jsExtensions",
 		"mandelbrot"], function($, metrics, jsExtensions, mandelbrot) {
-	if (Modernizr.canvastext)
+	if (Modernizr.canvastext && Modernizr.webworkers)
 	{
 		jsExtensions();
 	

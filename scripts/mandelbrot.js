@@ -62,8 +62,6 @@ define(["jquery", "metrics"], function($, metrics) {
 			var mandelbrotCanvas;
 			var mousedragImageData = null;
 			
-			reset();
-			
 			$('#resetButton').click(function() {
 				reset();
 			});
@@ -154,7 +152,7 @@ define(["jquery", "metrics"], function($, metrics) {
 				render();
 			});
 			
-			render();
+			reset();
 		}
 	};
 });

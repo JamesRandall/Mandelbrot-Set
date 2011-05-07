@@ -4,6 +4,7 @@ define(["jquery", "metrics"], function($, metrics) {
 	var yMin;
 	var yMax;
 	var disabled = false;
+	var worker = new Worker("scripts/rendererWorker.js");
 	
 	function getCanvas() { return $("#mandelbrotCanvas")[0]; }
 	
@@ -12,7 +13,6 @@ define(["jquery", "metrics"], function($, metrics) {
 	function render() {
 		var context;
 		var imageData;
-		var worker;
 		var iterations;
 		
 		$('#resetButton').attr('disabled', 'true');
@@ -26,7 +26,6 @@ define(["jquery", "metrics"], function($, metrics) {
 			iterations = 100;
 		}
 
-		worker = new Worker("scripts/rendererWorker.js");
 		worker.onmessage = function(e) {
 			context.putImageData(e.data.imageData, 0, 0);
 			$('#timeTaken').html(e.data.timeTaken + 'ms');

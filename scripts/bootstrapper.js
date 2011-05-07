@@ -18,6 +18,6 @@ require(["jquery",
 	else
 	{
 		$("#browserNotSupported").show();
-		$("#astar").hide();
+		$("#mandelbrot").hide();
 	}
 });

@@ -15,10 +15,12 @@ self.onmessage = function(e) {
 	var iteration;
 	var xTemp;
 	var color;
-	var imageData;
 	
 	var xScale = (xMax - xMin) / imageData.width;
 	var yScale = (yMax - yMin) / imageData.height;
+	
+	var startTime = new Date().getTime();
+	var endTime;
 	
 	Number.prototype['integer'] = function() {
 		return Math[this < 0 ? 'ceil' : 'floor'](this);
@@ -127,5 +129,10 @@ self.onmessage = function(e) {
 		}
 	}
 	
-	self.postMessage(imageData);
+	endTime = new Date().getTime();
+	
+	self.postMessage({
+		imageData: imageData,
+		timeTaken: endTime - startTime
+	});
 };

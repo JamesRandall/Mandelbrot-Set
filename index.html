@@ -12,11 +12,13 @@
 			<h1>Mandelbrot Set</h1>
 			<p>This is a HTML 5 Canvas, JavaScript and Web Worker implementation of the <a href="http://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot Set</a>. It makes use of the JavaScript libraries <a href="http://jquery.com/">jQuery</a> and <a href="http://requirejs.org/">RequireJS</a>.</p>
 			<p>Source code can be found <a href="https://github.com/JamesRandall/Mandelbrot-Set">online at GitHub</a> and more information on <a href="http://accidentalfish.wordpress.com">my blog</a>.</p>
+			<p>You can zoom in by clicking and dragging on the Mandelbrot. The higher the number of iterations you choose to use the more detailed the Mandelbrot will be but the slower it will run. You can always return to the top of the Mandelbrot by clicking Reset.</p>
 			<div id="browserNotSupported"><p>Your browser does not support running Mandelbrot Set. Please upgrade to a more recent version that supports HTML 5 canvas.</div>
 			<div id="mandelbrot">
 				<div id="toolbar">
 					<span class="right">Time taken to generate: <span id="timeTaken">N/A</span></span>
 					<span>
+						Number of iterations: <input id="iterations" type="text" value="100">
 						<input id="resetButton" type="button" value="Reset" />
 					</span>
 				</div>

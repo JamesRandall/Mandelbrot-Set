@@ -3,6 +3,10 @@ body div {
 	width: 1024px;
 }
 
+div#toolbar {
+	margin-bottom: 1em;
+}
+
 div#mandelbrot {
   background-color: white;
   width: 1024px;

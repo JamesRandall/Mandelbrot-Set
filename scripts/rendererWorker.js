@@ -1,5 +1,5 @@
 self.onmessage = function(e) {
-	var maxIteration = 100;
+	var maxIteration = e.data.numberOfIterations;
 	var imageData = e.data.imageData;
 	var xMin = e.data.xMin;
 	var xMax = e.data.xMax;

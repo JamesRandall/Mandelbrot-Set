@@ -21,8 +21,8 @@ define(["jquery", "metrics"], function($, metrics) {
 		
 		context = getContext();			
 		imageData = context.createImageData(metrics.width, metrics.height);
-		iterations = parseInt($('#iterations').val());
-		if (iterations === NaN) {
+		iterations = parseInt($('#iterations').val(), 10);
+		if (isNaN(iterations)) {
 			iterations = 100;
 		}
 
@@ -32,7 +32,7 @@ define(["jquery", "metrics"], function($, metrics) {
 			$('#timeTaken').html(e.data.timeTaken + 'ms');
 			$('#resetButton').removeAttr('disabled');
 			disabled = false;		
-		}
+		};
 
 		worker.postMessage({
 			imageData: imageData,
@@ -66,7 +66,8 @@ define(["jquery", "metrics"], function($, metrics) {
 			
 			$('#resetButton').click(function() {
 				reset();
-			})
+			});
+			
 			mandelbrotCanvas = $('#mandelbrotCanvas');
 			
 			mandelbrotCanvas.mousedown(function(e) {
@@ -87,10 +88,10 @@ define(["jquery", "metrics"], function($, metrics) {
 				var context;
 				
 				if (mousedragImageData !== null && !disabled) {
-					var canvasPos = mandelbrotCanvas.position();
-					var currentX = e.pageX - canvasPos.left;
-					var currentY = e.pageY - canvasPos.top;
-					var context = getContext();
+					canvasPos = mandelbrotCanvas.position();
+					currentX = e.pageX - canvasPos.left;
+					currentY = e.pageY - canvasPos.top;
+					context = getContext();
 				
 					context.putImageData(mousedragImageData, 0, 0);
 					context.fillStyle = "rgba(64,64,64,0.6)";

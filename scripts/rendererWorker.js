@@ -22,7 +22,7 @@ self.onmessage = function(e) {
 	var startTime = new Date().getTime();
 	var endTime;
 	
-	Number.prototype['integer'] = function() {
+	Number.prototype.integer = function() {
 		return Math[this < 0 ? 'ceil' : 'floor'](this);
 	};
 	

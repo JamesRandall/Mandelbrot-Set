@@ -4,7 +4,10 @@ define(["jquery", "metrics"], function($, metrics) {
 	var yMin;
 	var yMax;
 	var disabled = false;
-	var worker = new Worker("scripts/rendererWorker.js");
+	var worker;
+	if (Modernizr.webworkers) {
+		worker = new Worker("scripts/rendererWorker.js");
+	}
 	
 	function getCanvas() { return $("#mandelbrotCanvas")[0]; }
 	

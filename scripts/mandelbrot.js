@@ -78,8 +78,8 @@ define(["jquery", "metrics"], function($, metrics) {
 				}
 				
 				var canvasPos = mandelbrotCanvas.position();
-				mousedownX = e.pageX - canvasPos.left;
-				mousedownY = e.pageY - canvasPos.top;
+				mousedownX = (e.pageX - canvasPos.left) * metrics.scale;
+				mousedownY = (e.pageY - canvasPos.top) * metrics.scale;
 				mousedragImageData = getContext().getImageData(0,0,mandelbrotCanvas[0].width,mandelbrotCanvas[0].height);
 			});
 			
@@ -91,8 +91,8 @@ define(["jquery", "metrics"], function($, metrics) {
 				
 				if (mousedragImageData !== null && !disabled) {
 					canvasPos = mandelbrotCanvas.position();
-					currentX = e.pageX - canvasPos.left;
-					currentY = e.pageY - canvasPos.top;
+					currentX = (e.pageX - canvasPos.left) * metrics.scale;
+					currentY = (e.pageY - canvasPos.top) * metrics.scale;
 					context = getContext();
 				
 					context.putImageData(mousedragImageData, 0, 0);
@@ -121,8 +121,8 @@ define(["jquery", "metrics"], function($, metrics) {
 				var centerY;
 				var aspectRatio = mandelbrotCanvas[0].width / mandelbrotCanvas[0].height;
 				
-				mouseupX = e.pageX - canvasPos.left;
-				mouseupY = e.pageY - canvasPos.top;
+				mouseupX = (e.pageX - canvasPos.left) * metrics.scale;
+				mouseupY = (e.pageY - canvasPos.top) * metrics.scale;
 				
 				left = Math.min(mousedownX, mouseupX);
 				right = Math.max(mousedownX, mouseupX);

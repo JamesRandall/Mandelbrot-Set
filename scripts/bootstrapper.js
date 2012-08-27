@@ -9,9 +9,15 @@ require(["jquery",
 		{
 	    	metrics.width = $("#mandelbrot").width();
 			metrics.height = $("#mandelbrot").height();
-			$("#mandelbrot").append(
-				$('<canvas id="mandelbrotCanvas" width="' + metrics.width + '" height="' + metrics.height + '">')
-			);
+			metrics.scale = 1;
+			var canvas = $('<canvas id="mandelbrotCanvas" style="width:' + metrics.width + 'px; height: ' + metrics.height + 'px;">');
+			if (window.devicePixelRatio > 1.5) {
+				metrics.scale = 2;
+			}
+			metrics.width *= metrics.scale;
+			metrics.height *= metrics.scale;
+			canvas.attr({width: metrics.width, height: metrics.height});
+			$("#mandelbrot").append(canvas);
 			mandelbrot.begin();
 		}
 		else
